@@ -9,6 +9,7 @@ DOMAIN = "bitaxe"
 SENSOR_NAME_MAP = {
     "power": "Power Consumption",
     "temp": "Temperature",
+    "vrTemp": "Temperature VR",
     "hashRate": "Hash Rate",
     "bestDiff": "All-Time Best Difficulty",
     "bestSessionDiff": "Best Difficulty Since System Boot",
@@ -29,6 +30,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
     sensors = [
         BitAxeSensor(coordinator, "power", device_name),
         BitAxeSensor(coordinator, "temp", device_name),
+        BitAxeSensor(coordinator, "vrTemp", device_name),
         BitAxeSensor(coordinator, "hashRate", device_name),
         BitAxeSensor(coordinator, "bestDiff", device_name),
         BitAxeSensor(coordinator, "bestSessionDiff", device_name),
