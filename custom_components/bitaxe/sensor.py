@@ -8,7 +8,7 @@ DOMAIN = "bitaxe"
 
 SENSOR_NAME_MAP = {
     "power": "Power Consumption",
-    "temp": "Temperature",
+    "temp": "Temperature ASIC",
     "vrTemp": "Temperature VR",
     "hashRate": "Hash Rate",
     "bestDiff": "All-Time Best Difficulty",
@@ -84,6 +84,8 @@ class BitAxeSensor(Entity):
             return "GH/s"
         elif self.sensor_type == "temp":
             return "°C"
+        elif self.sensor_type == "vrTemp":
+            return "°C"
         elif self.sensor_type == "fanspeed":
             return "%"
         elif self.sensor_type == "fanrpm":
@@ -106,6 +108,8 @@ class BitAxeSensor(Entity):
         elif sensor_type == "sharesRejected":
             return "mdi:share-off"
         elif sensor_type == "temp":
+            return "mdi:thermometer"
+        elif sensor_type == "vrTemp":
             return "mdi:thermometer"
         elif sensor_type == "uptimeSeconds":
             return "mdi:clock"
