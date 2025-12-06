@@ -2,7 +2,7 @@
 
 [![Release Downloads](https://img.shields.io/github/downloads/DerMiika/Bitaxe-HA-Integration/total)](https://github.com/DerMiika/Bitaxe-HA-Integration/releases)
 [![GitHub issues](https://img.shields.io/github/issues/DerMiika/Bitaxe-HA-Integration)](https://github.com/DerMiika/Bitaxe-HA-Integration/issues)
-[![Version - 1.1.0](https://img.shields.io/badge/version-1.0.4-blue)](https://github.com/DerMiika/Bitaxe-HA-Integration/releases)
+[![Version - 1.1.0](https://img.shields.io/badge/version-1.1.0-blue)](https://github.com/DerMiika/Bitaxe-HA-Integration/releases)
 
 This is a custom integration for Bitaxe miners in Home Assistant.
 
