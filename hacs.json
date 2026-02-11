@@ -1,7 +1,13 @@
 {
   "name": "Bitaxe Monitoring",
   "content_in_root": false,
-  "filename": "custom_components/bitaxe",
+  "country": "DE",
+  "description": "Integration for monitoring BitAxe miners in Home Assistant",
+  "domains": ["bitaxe"],
+  "iot_class": "local_polling",
   "render_readme": true,
-  "zip_release": false
+  "documentation": "https://github.com/DerMiika/Bitaxe-HA-Integration",
+  "version": "1.3.0",
+  "zip_release": false,
+  "filename": "custom_components/bitaxe",
 }
