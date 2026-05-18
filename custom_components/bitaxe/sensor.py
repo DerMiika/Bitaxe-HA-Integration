@@ -4,7 +4,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
 _LOGGER = logging.getLogger(__name__)
 
-DOMAIN = "bitaxe"
+from .const import DOMAIN, PLATFORMS
 
 SENSOR_NAME_MAP = {
     "power": "Power Consumption",
@@ -18,6 +18,7 @@ SENSOR_NAME_MAP = {
     "fanspeed": "Fan Speed",
     "fanrpm": "Fan RPM",
     "uptimeSeconds": "Uptime",
+    "miningPaused": "Mining Paused"
 }
 
 async def async_setup_entry(hass, entry, async_add_entities):
@@ -39,6 +40,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
         BitAxeSensor(coordinator, "fanspeed", device_name, entry),
         BitAxeSensor(coordinator, "fanrpm", device_name, entry),
         BitAxeSensor(coordinator, "uptimeSeconds", device_name, entry),
+        BitAxeSensor(coordinator, "miningPaused", device_name, entry),
     ]
 
     async_add_entities(sensors, update_before_add=True)
@@ -115,6 +117,12 @@ class BitAxeSensor(Entity):
 
         if self.sensor_type == "hashRate" and value is not None:
             return int(value)
+        
+        if self.sensor_type == "miningPaused" and str(value).lower() == "false":
+            return str("Resumed")
+        
+        if self.sensor_type == "miningPaused" and str(value).lower() == "true":
+            return str("Paused")
 
         return value if value is not None else "N/A"
 
@@ -158,4 +166,6 @@ class BitAxeSensor(Entity):
             return "mdi:thermometer"
         elif sensor_type == "uptimeSeconds":
             return "mdi:clock"
+        elif sensor_type == "miningPaused":
+            return "mdi:speedometer"
         return "mdi:help-circle"

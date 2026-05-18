@@ -6,7 +6,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from homeassistant.helpers.event import async_track_time_interval
 
-DOMAIN = "bitaxe"
+from .const import DOMAIN, PLATFORMS
 _LOGGER = logging.getLogger(__name__)
 
 async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEntry):
@@ -27,7 +27,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEnt
         hass.data[DOMAIN] = {}
     hass.data[DOMAIN][device_id] = {"coordinator": coordinator}
 
-    await hass.config_entries.async_forward_entry_setups(entry, ["sensor"])
+    await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
 
     async_track_time_interval(
         hass,
