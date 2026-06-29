@@ -1,5 +1,5 @@
 import logging
-from homeassistant.helpers.entity import Entity
+from homeassistant.components.sensor import SensorEntity, SensorDeviceClass, SensorStateClass
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
 _LOGGER = logging.getLogger(__name__)
@@ -72,7 +72,7 @@ def format_difficulty(value) -> str | None:
 
 
 
-class BitAxeSensor(Entity):
+class BitAxeSensor(SensorEntity):
     """Representation of a BitAxe sensor."""
 
     def __init__(self, coordinator: DataUpdateCoordinator, sensor_type: str, device_name: str, entry):
@@ -86,6 +86,10 @@ class BitAxeSensor(Entity):
         self._attr_name = f"{SENSOR_NAME_MAP.get(sensor_type, sensor_type)} ({device_name})"
         self._attr_unique_id = f"{entry.entry_id}_{sensor_type}"
         self._attr_icon = self._get_icon(sensor_type)
+
+        if self.sensor_type == "power":
+            self._attr_device_class = SensorDeviceClass.POWER
+            self._attr_state_class = SensorStateClass.MEASUREMENT
 
         _LOGGER.debug(f"Initialized BitAxeSensor: {self._attr_name} (ID: {self._attr_unique_id})")
 
